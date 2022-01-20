@@ -1,0 +1,173 @@
+{
+	"info": {
+		"_postman_id": "3c35c94c-0f9c-4fa1-bb04-03284e57690e",
+		"name": "MarCore50",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login as Admin and save token to env",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const user = pm.response.json();",
+							"",
+							"pm.test(\"Has properties\", function () {",
+							"    pm.expect(user).to.have.property('username');",
+							"    pm.expect(user).to.have.property('email');",
+							"    pm.expect(user).to.have.property('token');",
+							"});",
+							"",
+							"if (pm.test(\"Has properties\")) {",
+							"    pm.globals.set('admin31_token', user.token);",
+							"}",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\": \"admin\",\n\t\"password\": \"Rvbn570428!\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/account/login",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"account",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\": \"Pipo\",\n\t\"password\": \"p@ssW0rd\",\n    \"city\": \"Herdersem\",\n    \"email\": \"pipo@dekloo.be\",\n    \"gender\": \"male\",\n    \"country\": \"Belgium\",\n    \"knownas\": \"Flauwe Plezante\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/account/register",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"account",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Customers with mail",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{admin31_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/vsoftcustomers/withmail",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"vsoftcustomers",
+						"withmail"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiIyIiwidW5pcXVlX25hbWUiOiJhZG1pbiIsInJvbGUiOlsiQWRtaW4iLCJNb2RlcmF0b3IiLCJNYXIiLCJNYXJlZGl0Il0sIm5iZiI6MTYyMTY4NzM4OSwiZXhwIjoxNjUzMjIzMzg5LCJpYXQiOjE2MjE2ODczODl9.qJRSp0qFve32xOt_smQeGllgW2ZgF04Edsn6OlFMyhQioy7OteE4-dxkE5yI-e2FYZACJjqwrWEI3n5a68GiAg",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "http://localhost:5000"
+		}
+	]
+}
