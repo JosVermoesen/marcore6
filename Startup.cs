@@ -139,13 +139,12 @@ namespace marcore.api
             app.UseCors(policy => policy
                 .AllowAnyHeader()
                 .AllowAnyMethod()
-                /* .WithOrigins(
-                    "https://mijn.rv.be",
-                    "https://portfolio.rv.be",
+                .WithOrigins(
+                    "https://mijn.rv.be",                    
                     "https://marintegraal.vsoft.be",
                     "http://localhost:4200",
-                    "http://localhost:8100")); */
-                .AllowAnyOrigin()); // needed for MS Identity authentication on Android app
+                    "http://localhost:8100"));
+                // .AllowAnyOrigin()); // needed for MS Identity authentication on Android app
 
             app.UseAuthentication();
             app.UseAuthorization();
