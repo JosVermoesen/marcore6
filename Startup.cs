@@ -140,11 +140,11 @@ namespace marcore.api
                 .AllowAnyHeader()
                 .AllowAnyMethod()
                 .WithOrigins(
-                    "https://mijn.rv.be",                    
+                    "https://mijn.rv.be",
                     "https://marintegraal.vsoft.be",
                     "http://localhost:4200",
                     "http://localhost:8100"));
-                // .AllowAnyOrigin()); // needed for MS Identity authentication on Android app
+            // .AllowAnyOrigin()); // needed for MS Identity authentication to work on an Android app
 
             app.UseAuthentication();
             app.UseAuthorization();
