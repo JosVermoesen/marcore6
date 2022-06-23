@@ -120,6 +120,6 @@ namespace marcore.api.Dtos.VsoftCustomer
         public string V262 { get; set; }    // ?
         public string V263 { get; set; }    // ?
         public ICollection<VsoftContractForDetailedDto> VsoftContracts { get; set; }
-        // public ICollection<VsoftCustomerInvoiceForDetailedDto> VsoftCustomerInvoices { get; set; }
+        public ICollection<VsoftCustomerInvoiceForDetailedDto> VsoftCustomerInvoices { get; set; }
     }
 }
